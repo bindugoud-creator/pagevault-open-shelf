@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BrowseRouteImport } from './routes/browse'
+import { Route as DigitalLibraryRouteImport } from './routes/digital-library'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as RegisterRouteImport } from './routes/register'
+import { Route as UploadRouteImport } from './routes/upload'
+import { Route as BooksListingIdRouteImport } from './routes/books/$listingId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BrowseRoute = BrowseRouteImport.update({
+  id: '/browse',
+  path: '/browse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalLibraryRoute = DigitalLibraryRouteImport.update({
+  id: '/digital-library',
+  path: '/digital-library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RegisterRoute = RegisterRouteImport.update({
+  id: '/register',
+  path: '/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UploadRoute = UploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BooksListingIdRoute = BooksListingIdRouteImport.update({
+  id: '/books/$listingId',
+  path: '/books/$listingId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/browse': typeof BrowseRoute
+  '/digital-library': typeof DigitalLibraryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/upload': typeof UploadRoute
+  '/books/$listingId': typeof BooksListingIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/browse': typeof BrowseRoute
+  '/digital-library': typeof DigitalLibraryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/upload': typeof UploadRoute
+  '/books/$listingId': typeof BooksListingIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/browse': typeof BrowseRoute
+  '/digital-library': typeof DigitalLibraryRoute
+  '/login': typeof LoginRoute
+  '/register': typeof RegisterRoute
+  '/upload': typeof UploadRoute
+  '/books/$listingId': typeof BooksListingIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/browse'
+    | '/digital-library'
+    | '/login'
+    | '/register'
+    | '/upload'
+    | '/books/$listingId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/browse'
+    | '/digital-library'
+    | '/login'
+    | '/register'
+    | '/upload'
+    | '/books/$listingId'
+  id:
+    | '__root__'
+    | '/'
+    | '/browse'
+    | '/digital-library'
+    | '/login'
+    | '/register'
+    | '/upload'
+    | '/books/$listingId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BrowseRoute: typeof BrowseRoute
+  DigitalLibraryRoute: typeof DigitalLibraryRoute
+  LoginRoute: typeof LoginRoute
+  RegisterRoute: typeof RegisterRoute
+  UploadRoute: typeof UploadRoute
+  BooksListingIdRoute: typeof BooksListingIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/browse': {
+      id: '/browse'
+      path: '/browse'
+      fullPath: '/browse'
+      preLoaderRoute: typeof BrowseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-library': {
+      id: '/digital-library'
+      path: '/digital-library'
+      fullPath: '/digital-library'
+      preLoaderRoute: typeof DigitalLibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/register': {
+      id: '/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof RegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/upload': {
+      id: '/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof UploadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/books/$listingId': {
+      id: '/books/$listingId'
+      path: '/books/$listingId'
+      fullPath: '/books/$listingId'
+      preLoaderRoute: typeof BooksListingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BrowseRoute: BrowseRoute,
+  DigitalLibraryRoute: DigitalLibraryRoute,
+  LoginRoute: LoginRoute,
+  RegisterRoute: RegisterRoute,
+  UploadRoute: UploadRoute,
+  BooksListingIdRoute: BooksListingIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
